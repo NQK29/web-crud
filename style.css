@@ -1,0 +1,553 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Hiệu ứng cuộn trang mượt hơn */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; /* Sử dụng font hệ thống hiện đại, dễ đọc */
+    line-height: 1.6;
+    color: #343a40; /* Màu chữ chính đậm hơn một chút */
+    background-color: #f8f9fa; /* Màu nền trang sáng */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    color: #007bff; /* Màu link mặc định */
+    text-decoration: none;
+    transition: color 0.2s ease-in-out; /* Hiệu ứng chuyển màu nhẹ cho link */
+}
+
+a:hover {
+    color: #0056b3; /* Màu link đậm hơn khi hover */
+    text-decoration: none; /* Giữ không gạch chân khi hover cho nhất quán */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle; /* Giúp căn chỉnh ảnh tốt hơn */
+}
+
+/* ========================================= */
+/* --- Container Căn Giữa --- */
+/* ========================================= */
+.container {
+    width: 100%;
+    max-width: 1140px; /* Chiều rộng tối đa phổ biến */
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* ========================================= */
+/* --- Header Chung --- */
+/* ========================================= */
+.site-header {
+    background-color: #343a40; /* Màu nền xám tối */
+    color: #ffffff;
+    padding: 1rem 0; /* Dùng rem cho đơn vị linh hoạt */
+    border-bottom: 4px solid #0d6efd; /* Màu xanh dương mới, đậm hơn */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ */
+    position: sticky; /* Giữ header cố định khi cuộn (tùy chọn) */
+    top: 0;
+    z-index: 1000; /* Đảm bảo header nằm trên các phần tử khác */
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Cho phép xuống dòng trên màn hình nhỏ */
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 1.75rem; /* Kích thước tiêu đề */
+}
+
+.site-header h1 a {
+    color: #ffffff;
+    font-weight: 700; /* Đậm hơn */
+    letter-spacing: -0.5px; /* Giảm khoảng cách chữ chút */
+}
+.site-header h1 a:hover {
+    color: #e9ecef; /* Sáng hơn khi hover */
+}
+
+.site-header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* Cho phép menu xuống dòng */
+}
+
+.site-header nav li {
+    margin-left: 1.5rem;
+}
+/* Bỏ margin trái cho mục đầu tiên */
+.site-header nav li:first-child {
+    margin-left: 0;
+}
+
+.site-header nav a {
+    color: #f8f9fa; /* Màu chữ menu sáng */
+    font-size: 1rem;
+    font-weight: 500; /* Hơi đậm */
+    padding: 0.5rem 0;
+    border-bottom: 3px solid transparent; /* Viền dưới dày hơn */
+    transition: color 0.2s ease, border-bottom-color 0.3s ease;
+}
+
+.site-header nav a:hover,
+.site-header nav a.active { /* Giả sử bạn sẽ thêm class active cho trang hiện tại */
+    color: #ffffff;
+    border-bottom-color: #ffffff; /* Hiện viền rõ hơn */
+}
+
+/* ========================================= */
+/* --- Main Content Area --- */
+/* ========================================= */
+.site-content {
+    flex-grow: 1; /* Quan trọng để đẩy footer xuống */
+    padding-top: 2.5rem; /* Tăng khoảng cách trên/dưới */
+    padding-bottom: 2.5rem;
+}
+
+/* ========================================= */
+/* --- Footer Chung --- */
+/* ========================================= */
+.site-footer {
+    background-color: #343a40; /* Đồng bộ màu với header */
+    color: #ced4da; /* Màu chữ sáng hơn chút */
+    text-align: center;
+    padding: 2rem 0; /* Tăng padding */
+    margin-top: auto; /* Đảm bảo footer luôn ở dưới */
+    font-size: 0.9rem;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+/* ========================================= */
+/* --- Product List (Frontend - index.php) --- */
+/* ========================================= */
+.product-list-header { /* Thêm tiêu đề cho danh sách sản phẩm */
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: #495057;
+    font-weight: 600;
+}
+
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Cột tự động co giãn */
+    gap: 2rem; /* Tăng khoảng cách */
+    margin-top: 1.5rem;
+}
+
+.product-item {
+    border: 1px solid #e9ecef; /* Viền nhạt hơn */
+    padding: 0; /* Bỏ padding cũ */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Bóng đổ mềm mại */
+    text-align: center;
+    overflow: hidden; /* Quan trọng để bo góc ảnh */
+    display: flex; /* Dùng flex để căn chỉnh nội dung */
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    transform: translateY(-8px); /* Nhấc lên nhiều hơn */
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.product-item .product-image-wrapper { /* Thêm thẻ div bao ảnh nếu cần */
+    width: 100%;
+    height: 220px; /* Chiều cao cố định cho ảnh */
+    overflow: hidden;
+}
+.product-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Đảm bảo ảnh lấp đầy khung mà không bị méo */
+    margin-bottom: 0; /* Bỏ margin */
+    border-radius: 0; /* Bỏ bo góc riêng của ảnh */
+    border-bottom: 1px solid #e9ecef; /* Thêm đường kẻ dưới ảnh */
+    transition: transform 0.4s ease; /* Hiệu ứng zoom ảnh khi hover item */
+}
+.product-item:hover img {
+    transform: scale(1.05); /* Zoom ảnh nhẹ */
+}
+
+.product-item .product-info { /* Phần chứa text */
+    padding: 1.25rem;
+    flex-grow: 1; /* Đẩy phần này xuống nếu dùng flex */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Căn chỉnh nội dung bên trong */
+}
+
+.product-item h2 {
+    font-size: 1.3rem; /* Tăng cỡ chữ tên sản phẩm */
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    color: #343a40;
+    font-weight: 600; /* Đậm hơn */
+}
+
+.product-item p {
+    font-size: 0.95rem;
+    color: #6c757d;
+    line-height: 1.5;
+    margin-bottom: 0;
+    /* Cắt bớt text nếu quá dài (tùy chọn, cần CSS phức tạp hơn hoặc JS) */
+}
+
+
+/* ========================================= */
+/* --- CSS CHO TRANG ADMIN --- */
+/* ========================================= */
+
+/* --- Admin Container Chung --- */
+.admin-container {
+    width: 100%; /* Chiếm hết chiều rộng trên mobile */
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Admin Header (trong container) --- */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Cho phép xuống dòng */
+    gap: 1rem; /* Khoảng cách nếu xuống dòng */
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid #dee2e6;
+}
+.admin-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #495057;
+    font-weight: 600;
+}
+
+/* --- Nút Bấm Chung (Admin & Forms) --- */
+.btn {
+    display: inline-block;
+    padding: 0.7rem 1.3rem; /* Tăng padding */
+    font-size: 0.95rem; /* Hơi nhỏ hơn chút */
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 6px; /* Bo góc nhiều hơn */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out; /* Áp dụng transition cho tất cả */
+    border: 1px solid transparent; /* Thêm border để giữ layout khi hover đổi màu */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.btn:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+.btn:active {
+    transform: translateY(0px);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Màu nút */
+.btn-primary { background-color: #0d6efd; color: white; border-color: #0d6efd; }
+.btn-primary:hover { background-color: #0b5ed7; border-color: #0a58ca; color: white; }
+
+.btn-danger { background-color: #dc3545; color: white; border-color: #dc3545;}
+.btn-danger:hover { background-color: #bb2d3b; border-color: #b02a37; color: white;}
+
+.btn-warning { background-color: #ffc107; color: #000; border-color: #ffc107;} /* Chữ đen dễ đọc hơn */
+.btn-warning:hover { background-color: #ffca2c; border-color: #ffc720; color: #000;}
+
+.btn-secondary { background-color: #6c757d; color: white; border-color: #6c757d;}
+.btn-secondary:hover { background-color: #5c636a; border-color: #565e64; color: white;}
+
+.btn-success { background-color: #198754; color: white; border-color: #198754;}
+.btn-success:hover { background-color: #157347; border-color: #146c43; color: white;}
+
+/* --- Admin Dashboard Table (admin/index.php) --- */
+.product-management {
+    margin-top: 1.5rem;
+}
+.product-management h2 {
+    margin-bottom: 1.5rem;
+    color: #495057;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+/* Cho phép bảng cuộn ngang trên màn hình nhỏ */
+.table-responsive-wrapper {
+    overflow-x: auto;
+    margin-bottom: 1rem; /* Khoảng cách dưới bảng */
+}
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0; /* Bỏ margin top vì đã có wrapper */
+    background-color: #fff; /* Nền trắng cho bảng */
+    border: 1px solid #dee2e6; /* Thêm viền ngoài cho bảng */
+    border-radius: 5px;
+    overflow: hidden;
+}
+.product-table th, .product-table td {
+    border: none; /* Bỏ border mặc định */
+    border-bottom: 1px solid #dee2e6; /* Chỉ giữ border dưới */
+    padding: 1rem 1.1rem; /* Tăng padding */
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.95rem; /* Chỉnh cỡ chữ trong bảng */
+}
+.product-table td { color: #495057; }
+.product-table thead th {
+    background-color: #f8f9fa; /* Màu nền header sáng hơn */
+    color: #495057;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px; /* Tăng khoảng cách chữ header */
+    border-bottom-width: 2px; /* Border dưới header dày hơn */
+}
+/* Bỏ border dưới cho dòng cuối cùng */
+.product-table tbody tr:last-child td {
+    border-bottom: none;
+}
+/* Hover effect cho dòng */
+.product-table tbody tr:hover {
+    background-color: #eef2f7; /* Màu hover khác */
+}
+.product-table img {
+    max-width: 65px; /* Điều chỉnh lại nếu cần */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+.product-table .actions { white-space: nowrap; } /* Ngăn nút xuống dòng */
+.product-table .actions .btn {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+    margin-right: 5px;
+    box-shadow: none;
+    vertical-align: middle; /* Căn nút theo chiều dọc */
+}
+.product-table .actions .btn:last-child { margin-right: 0; }
+.product-table .actions .btn:hover { transform: none; filter: brightness(95%); } /* Hiệu ứng hover nhẹ hơn */
+
+.no-products {
+    padding: 1.5rem;
+    background-color: #e9ecef;
+    color: #6c757d;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    text-align: center;
+    font-style: italic;
+}
+
+/* --- Admin Forms (Add, Edit) --- */
+.admin-form-container { /* Class riêng cho form admin nếu cần */
+     max-width: 800px; /* Giới hạn chiều rộng form */
+}
+.form-group { margin-bottom: 1.75rem; }
+.form-group label { display: block; margin-bottom: 0.6rem; font-weight: 600; color: #495057; font-size: 0.95rem;}
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="file"],
+.form-group input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 1rem; /* Chỉnh padding */
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    appearance: none; /* Bỏ style mặc định của trình duyệt */
+    border-radius: 0.3rem; /* Bo góc đồng bộ */
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-group input[type="text"]:focus,
+.form-group textarea:focus,
+.form-group input[type="password"]:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #86b7fe; /* Màu viền focus mới */
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Bóng đổ focus */
+}
+.form-group textarea { min-height: 150px; resize: vertical; }
+.form-group input[type="file"] { padding: 0.6rem; background-color: #f8f9fa; }
+.form-group .current-image { max-width: 160px; height: auto; display: block; margin-top: 10px; border: 1px solid #dee2e6; padding: 5px; border-radius: 4px; background-color: #f8f9fa;}
+.form-group small { font-size: 0.85rem; color: #6c757d; } /* Ghi chú nhỏ */
+
+/* Nút submit form nên dùng class .btn .btn-success hoặc .btn-warning */
+.form-actions { text-align: center; margin-top: 2rem; }
+
+/* --- Thông báo lỗi/thành công (chung cho các form) --- */
+.message {
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid transparent;
+    border-radius: .3rem;
+    font-weight: 500;
+    text-align: center;
+    font-size: 1rem;
+}
+.message.success { color: #0f5132; background-color: #d1e7dd; border-color: #badbcc; }
+.message.error { color: #842029; background-color: #f8d7da; border-color: #f5c2c7; }
+
+/* --- Link quay lại --- */
+.back-link { display: block; text-align: center; margin-top: 1.5rem; font-size: 0.95em;}
+.back-link a { color: #007bff; font-weight: 500;}
+.back-link a:hover { color: #0056b3; text-decoration: underline; }
+
+
+/* --- Login Form (admin/login.php) --- */
+.login-body { /* Class cho thẻ body trang login nếu muốn style riêng */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #e9ecef; /* Nền khác cho trang login */
+}
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 2rem auto;
+    padding: 2.5rem 3rem; /* Tăng padding */
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.login-container h1 {
+    margin-bottom: 2rem;
+    color: #343a40;
+    font-size: 2rem;
+    font-weight: 600;
+}
+ .login-container .form-group { text-align: left; }
+ .login-container .form-group label { font-weight: 600; margin-bottom: 0.5rem;}
+ /* Nút Login dùng .btn .btn-primary */
+ .login-container .login-btn {
+     margin-top: 1.5rem;
+     padding: 0.8rem;
+     font-size: 1.1rem;
+     font-weight: bold;
+     width: 100%; /* Nút login full width */
+ }
+ .login-container .message.error {
+     margin-bottom: 1.5rem;
+     font-size: 1rem;
+ }
+ .login-container .back-link { margin-top: 1.5rem; }
+
+/* ========================================= */
+/* --- Basic Responsive --- */
+/* ========================================= */
+
+/* Cho màn hình nhỏ hơn máy tính bảng lớn (992px) */
+@media (max-width: 991.98px) {
+    .container { max-width: 960px; }
+    .product-list { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+}
+
+/* Cho màn hình nhỏ hơn máy tính bảng nhỏ (768px) */
+@media (max-width: 767.98px) {
+    .container { max-width: 720px; padding-left: 10px; padding-right: 10px; }
+    body { font-size: 15px; } /* Giảm cỡ chữ gốc */
+
+    /* Frontend */
+    .product-list { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .product-item { padding: 0; } /* Reset padding */
+    .product-item .product-info { padding: 1rem; }
+    .product-item h2 { font-size: 1.2rem; }
+
+    /* Header */
+    .site-header .container { flex-direction: column; align-items: center; gap: 0.5rem;} /* Logo/Title ở giữa */
+    .site-header h1 { text-align: center;}
+    .site-header nav ul { justify-content: center; margin-top: 0.5rem; flex-wrap: wrap; gap: 0 1rem; /* Khoảng cách ngang */}
+    .site-header nav li { margin-left: 0;}
+
+    /* Admin Table */
+    .admin-container { padding: 1.5rem; }
+    .admin-header { flex-direction: column; align-items: center; text-align: center;} /* Header admin căn giữa */
+    .admin-header h1 { font-size: 1.6rem; margin-bottom: 0.5rem;}
+
+    /* Cho phép bảng cuộn ngang */
+    .table-responsive-wrapper {
+        overflow-x: auto;
+        margin-left: -1.5rem; /* Bù trừ padding của container */
+        margin-right: -1.5rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+     .product-table th, .product-table td { padding: 0.7rem 0.8rem; font-size: 0.9rem; } /* Giảm padding bảng */
+
+    /* Forms */
+    .admin-container h1 { font-size: 1.7rem; }
+
+    /* Login Form */
+    .login-container { margin: 2rem 15px; padding: 2rem; } /* Thêm margin ngang */
+    .login-container h1 { font-size: 1.8rem; }
+}
+
+/* Cho màn hình điện thoại (576px) */
+@media (max-width: 575.98px) {
+    .container { max-width: none; } /* Full width */
+    h1, .product-list-header { font-size: 1.6rem; }
+
+    /* Frontend */
+    .product-list { grid-template-columns: 1fr; gap: 1rem; } /* Luôn là 1 cột */
+
+    /* Header */
+    .site-header { padding: 0.8rem 0; }
+    .site-header h1 { font-size: 1.5rem; }
+    .site-header nav ul { gap: 0 0.8rem; } /* Giảm khoảng cách menu */
+    .site-header nav a { font-size: 0.9rem; }
+
+    /* Admin */
+    .admin-container { padding: 1rem; border-radius: 0;} /* Bỏ bo góc trên mobile */
+    .admin-header h1 { font-size: 1.5rem; }
+    .admin-actions .btn { display: block; width: 100%; margin-bottom: 0.75rem; margin-left: 0;} /* Nút admin full width */
+    .admin-actions .logout-btn { float: none; }
+    .product-table th, .product-table td { padding: 0.6rem 0.7rem; font-size: 0.85rem;} /* Giảm padding bảng nữa */
+    .product-table .actions .btn { display: inline-block; margin-bottom: 5px;} /* Giữ nút sửa xóa inline */
+
+    /* Forms */
+     .form-group input[type="text"],
+     .form-group textarea,
+     .form-group input[type="password"] { padding: 0.7rem 0.9rem; font-size: 0.95rem;}
+     .btn { padding: 0.6rem 1rem; font-size: 0.9rem;}
+
+    /* Login */
+    .login-container { margin: 1rem; padding: 1.5rem; }
+    .login-container h1 { font-size: 1.6rem; }
+    .login-container .back-link { font-size: 0.85rem; }
+}
